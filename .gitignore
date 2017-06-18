@@ -1,3 +1,6 @@
 
 # TEMP folder
 /TEMP/*
+
+# VSCode
+*vscode/*
