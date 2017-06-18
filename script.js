@@ -4,7 +4,7 @@ var prevInputNumber = "";
 var prevInputOperator = "";
 var equation = "";
 var display = "";
-var basicOperators = "x-+÷%";
+var basicOperators = "*-+/%";
 var buttons = document.getElementsByTagName("button");
 for (var i = 0; i < buttons.length; i++) {
     buttons[i].onclick = calc;
@@ -24,16 +24,18 @@ function calc() {
             if (inputNumber.length == 0) {
                 inputNumber += "0.";
                 equation += "0.";
+                display += "0.";
+                break;
             }
             if (inputNumber.indexOf(".") == -1) {
                 inputNumber += btnValue;
                 equation += btnValue;
+                display += btnValue;
             }
-            display += btnValue;
             break;
         case "+":
         case "-":
-            if (basicOperators.indexOf(display.slice(-1)) == -1) {
+            if (basicOperators.indexOf(equation.slice(-1)) == -1) {
                 equation += btnValue;
                 display += btnValue;
             }
@@ -42,7 +44,7 @@ function calc() {
             inputNumber = "";
             break;
         case "x":
-            if (basicOperators.indexOf(display.slice(-1)) == -1) {
+            if (basicOperators.indexOf(equation.slice(-1)) == -1) {
                 equation += "*";
                 display += btnValue;
             }
@@ -51,7 +53,7 @@ function calc() {
             inputNumber = "";
             break;
         case "÷":
-            if (basicOperators.indexOf(display.slice(-1)) == -1) {
+            if (basicOperators.indexOf(equation.slice(-1)) == -1) {
                 equation += "/";
                 display += btnValue;
             }
@@ -60,7 +62,7 @@ function calc() {
             inputNumber = "";
             break;
         case "%":
-            if (basicOperators.indexOf(display.slice(-1)) == -1) {
+            if (basicOperators.indexOf(equation.slice(-1)) == -1) {
                 switch (prevInputOperator) {
                     case "+":
                         equation += "-" + inputNumber + "+(" + prevInputNumber + "/100*" + inputNumber + ")";
@@ -77,14 +79,14 @@ function calc() {
             inputNumber = "";
             break;
         case "=":
-            if (basicOperators.indexOf(display.slice(-1)) !== -1) {
+            if (basicOperators.indexOf(equation.slice(-1)) !== -1) {
                 equation = display.slice(0, -1)
             }
             try {
                 var result = eval(equation).toString();
                 inputNumber = result;
                 equation = result;
-                display = equation;
+                display = parseFloat(Number(result).toFixed(10));
             }
             catch (SyntaxError) {
                 alert("The syntax of the equation is not correct!")
