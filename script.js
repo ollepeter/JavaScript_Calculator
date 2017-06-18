@@ -12,6 +12,9 @@ function calc() {
         case "C":
             document.getElementById("display").innerHTML = "";
             break;
+        case ".":
+            break;           
+                
         case "=":
             var finalEquation = equation.slice(0, -1);
             result = eval(finalEquation);
