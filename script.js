@@ -14,7 +14,7 @@ function calc() {
     switch (btnValue) {
         case "C":
             equation = "";
-            inputNumber = "";
+            inputNumber = "";   
             display = equation;
             break;
         case ".":
@@ -28,8 +28,7 @@ function calc() {
                 inputNumber = "0" + btnValue;
             }
             display = equation;
-            break;
-                
+            break; 
         case "=":
             equation += btnValue;
             var finalEquation = equation.slice(0, -1);
