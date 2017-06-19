@@ -101,7 +101,6 @@ function calc() {
             break;
     }
     document.getElementById("display").innerHTML = display;
-
     /* The below lines are for testing.
     document.getElementById("btnValue").innerHTML = "btnValue: " + btnValue;
     document.getElementById("inputNumber").innerHTML = "inputNumber: " + inputNumber;
